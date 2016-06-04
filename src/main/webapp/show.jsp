@@ -15,6 +15,12 @@
                 </li>
             </c:forEach>
         </ul>
+        <div style="color:red;">
+            ${requestScope.error_msg}
+        </div>
+        <div>
+            ${requestScope.duration_msg}
+        </div>
         <a href="/wikipath">Go back.</a>
     </body>
 </html>

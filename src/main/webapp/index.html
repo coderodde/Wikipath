@@ -3,16 +3,45 @@
     <head>
         <title>Wikipath</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <style>
+            input {
+                margin: 10px;
+                padding: 1px;
+                font-family: monospace;
+                font-size: 10pt;
+                border: 1px solid red;
+            }
+            
+            button {
+                margin: 10px;
+            }
+        </style>
     </head>
     
     <body>
-        <h1>Wikipedia article shortest path finder</h1>
-        
-        <form action="search" method="GET">
-            Source article: <input type="text" name="from_url"> <br>
-            Target article: <input type="text" name="to_url">   <br>
-            <button type="submit">Search!</button>
-        </form>
-        
+        <div align="center" style="font-family: monospace">
+            <h1>Wikipedia article shortest path finder</h1>
+
+            <form action="search" method="GET" style="align:center;">
+                <label>Source article:</label> 
+                <input type="text" size="80" name="from_url"> 
+                <br>
+                
+                <label>Target article:</label>
+                <input type="text" size="80" name="to_url">   
+                <br>
+                
+                <button type="submit">Search!</button>
+            </form>
+            
+            <h2>How to use</h2>
+            <p align="justify" style="width:200px;">
+                Just copy the entire URL for source and target articles. The 
+                terminal articles must be written in the same language. The 
+                search time may be anything from a couple of seconds and 
+                several minutes.
+            </p>
+        </div>
     </body>
 </html>
