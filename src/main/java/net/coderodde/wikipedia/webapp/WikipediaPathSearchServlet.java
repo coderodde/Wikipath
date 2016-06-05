@@ -1,14 +1,7 @@
 package net.coderodde.wikipedia.webapp;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.Writer;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,18 +21,9 @@ public class WikipediaPathSearchServlet extends HttpServlet {
         String fromUrl = request.getParameter("from_url").trim();
         String toUrl   = request.getParameter("to_url")  .trim();
 
-        File logFile = new File("../logs/wikipath.log");
-        Writer writer = new BufferedWriter(
-                           new OutputStreamWriter(
-                              new FileOutputStream(logFile, true), 
-                              "UTF-8"));
+        // When deployed to Heroku, prints to the application log file.
+        System.out.println("[WIKIPATH_QUERY] " + fromUrl + " -> " + toUrl);
         
-        writer.append(fromUrl + ", " + toUrl + ", " + new Date() + "\n");
-        writer.close();
-        
-        System.out.println("From: " + fromUrl);
-        System.out.println("To:   " + toUrl);
-        System.out.println("File: " + logFile.getAbsolutePath());
         AbstractWikipediaShortestPathFinder finder = 
                 new ParallelBidirectionalWikipediaShortestPathFinder();
         
@@ -57,18 +41,17 @@ public class WikipediaPathSearchServlet extends HttpServlet {
                 return;
             }
             
-            long startTime = System.currentTimeMillis();
-            
             List<String> path = finder.search(handlerFrom.getTitle(),
                                               handlerTo.getTitle(), 
                                               handlerTo.getAPIURL(),
-                                              System.out);
+                                              null);
             
-            long endTime = System.currentTimeMillis();
-            
-            request.setAttribute("duration_msg", 
-                                 String.format("The search took %.3f seconds.", 
-                                               (endTime - startTime) / 1e3));
+            request.setAttribute(
+                    "result_msg", 
+                    String.format("The search took %.3f seconds, expanding " +
+                                  "%d nodes.",
+                                  finder.getDuration() / 1e3,
+                                  finder.getNumberOfExpandedNodes()));
             
             List<ArticleData> ret = new ArrayList<>(path.size());
             

@@ -19,8 +19,8 @@
             ${requestScope.error_msg}
         </div>
         <div>
-            ${requestScope.duration_msg}
+            ${requestScope.result_msg}
         </div>
-        <a href="/wikipath">Go back.</a>
+        <a href="/">Go back.</a>
     </body>
 </html>
