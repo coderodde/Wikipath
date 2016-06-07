@@ -56,14 +56,15 @@ public class WikipediaPathSearchServlet extends HttpServlet {
             List<ArticleData> ret = new ArrayList<>(path.size());
             
             for (String title : path) {
-                ret.add(new ArticleData("https://" + handlerTo.getBasicURL() 
-                                                   + WikipediaURLHandler.WIKI_DIR_TOKEN
-                                                   + title,
-                                        title));
+                ret.add(new ArticleData(
+                        "https://" + handlerTo.getBasicURL() 
+                                   + WikipediaURLHandler.WIKI_DIR_TOKEN
+                                   + title,
+                        title));
             }
             
-            request.setAttribute("solution", ret);
-        } catch (Exception ex) {
+            request.setAttribute("solution", ret);   
+        } catch (ServletException | IOException ex) {
             request.setAttribute("error_msg", ex.getMessage());
         }
 

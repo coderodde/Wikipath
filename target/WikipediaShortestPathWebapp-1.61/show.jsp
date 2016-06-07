@@ -21,6 +21,7 @@
         <div>
             ${requestScope.result_msg}
         </div>
-        <a href="/">Go back.</a>
+        
+        <button onclick="window.history.back();">Go back</button>
     </body>
 </html>

@@ -10,7 +10,15 @@
                 padding: 1px;
                 font-family: monospace;
                 font-size: 10pt;
-                border: 1px solid red;
+                //border: 1px solid red;
+            }
+            
+            .source {
+                border: 2px solid green;
+            }
+            
+            .target {
+                border: 2px solid red;
             }
             
             button {
@@ -25,11 +33,11 @@
 
             <form action="search" method="GET" style="align:center;">
                 <label>Source article:</label> 
-                <input type="text" size="80" name="from_url" value="https://en.wikipedia.org/wiki/Kostomuksha"> 
+                <input type="text" class="source" size="80" name="from_url" value="https://en.wikipedia.org/wiki/Kostomuksha"> 
                 <br>
                 
                 <label>Target article:</label>
-                <input type="text" size="80" name="to_url" value="https://en.wikipedia.org/wiki/Bugatti_Chiron">   
+                <input type="text" class="target" size="80" name="to_url" value="https://en.wikipedia.org/wiki/Bugatti_Chiron">   
                 <br>
                 
                 <button type="submit">Search!</button>
@@ -44,7 +52,7 @@
             </p>
             
             <p align="justify" style="width:200px;">
-                By Rodion &quot;(code)rodde&quot; Efremov, 2016.06.04.
+                By Rodion &quot;(code)rodde&quot; Efremov, 2016.06.07.
             </p>
         </div>
     </body>

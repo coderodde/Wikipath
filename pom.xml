@@ -4,7 +4,7 @@
 
     <groupId>net.coderodde.wikipedia</groupId>
     <artifactId>WikipediaShortestPathWebapp</artifactId>
-    <version>1.6</version>
+    <version>1.61</version>
     <packaging>war</packaging>
 
     <name>WikipediaShortestPathWebapp</name>
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>net.coderodde.wikipedia.sp</groupId>
             <artifactId>WikipediaArticleShortestPathMaven</artifactId>
-            <version>1.6</version>
+            <version>1.61</version>
         </dependency>
     </dependencies>
 
