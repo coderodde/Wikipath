@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import net.coderodde.wikipedia.sp.AbstractWikipediaShortestPathFinder;
 import net.coderodde.wikipedia.sp.WikipediaURLHandler;
-import net.coderodde.wikipedia.sp.support.ParallelBidirectionalWikipediaShortestPathFinder;
+import net.coderodde.wikipedia.sp.support.ParallelMultidirectionalWikipediaShortestPathFinder;
 
 @WebServlet(name = "WikipediaPathSearchServlet", urlPatterns = {"/search"})
 public class WikipediaPathSearchServlet extends HttpServlet {
@@ -24,8 +24,9 @@ public class WikipediaPathSearchServlet extends HttpServlet {
         // When deployed to Heroku, prints to the application log file.
         System.out.println("[WIKIPATH_QUERY] " + fromUrl + " -> " + toUrl);
         
-        AbstractWikipediaShortestPathFinder finder = 
-                new ParallelBidirectionalWikipediaShortestPathFinder();
+        AbstractWikipediaShortestPathFinder finder =
+                new ParallelMultidirectionalWikipediaShortestPathFinder(
+                        16, 10, 10);
         
         try {
             WikipediaURLHandler handlerFrom = new WikipediaURLHandler(fromUrl);
@@ -67,6 +68,8 @@ public class WikipediaPathSearchServlet extends HttpServlet {
         } catch (ServletException | IOException ex) {
             request.setAttribute("error_msg", ex.getMessage());
         }
+        
+        request.setAttribute("cores", Runtime.getRuntime().availableProcessors());
 
         request.getRequestDispatcher("show.jsp").forward(request, response);
     }

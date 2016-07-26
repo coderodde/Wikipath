@@ -21,7 +21,9 @@
         <div>
             ${requestScope.result_msg}
         </div>
-        
+        <p>
+            Cores: ${requestScope.cores}
+        </p>
         <button onclick="window.history.back();">Go back</button>
     </body>
 </html>
